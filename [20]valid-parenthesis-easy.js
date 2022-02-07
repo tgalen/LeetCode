@@ -28,24 +28,31 @@
 //  * @return {boolean}
 //  */
 var isValid = function (s) {
-    const compliment = [
-        { open: "(", close: ")" },
-        { open: "{", close: "}" },
-        { open: "[", close: "]" }
-    ];
+    const map = {
+        "(": ")",
+        "{": "}",
+        "[": "]"
+    };
 
-    for (let i = 0; i < s.length - 1; i += 2) {
-        for (let k = 0; k < compliment.length; k++) {
-            if (s[i] === compliment[k].open && s[i + 1] !== compliment[k].close) {
-                return false;
-            }
+    const stack = [];
+    for (let i of s) {
+        if (map[i]) {
+            // i is an opening bracket
+            stack.push(map[i]);
+        } else if (stack.length > 0 && stack[stack.length - 1] === i) {
+            // i is a closing bracket and the top of the stack matches
+            stack.pop();
+        } else {
+            // i is closing bracket and the top of the stack does not match
+            return false;
         }
     }
-    return true;
+    return stack.length === 0;
 };
 
 ("[()]");
-("[{[{}]}]");
+("[{[{}]}]()");
 ("([()])");
 
 console.log("[20]valid-parenthesis");
+console.log(isValid("()"));
