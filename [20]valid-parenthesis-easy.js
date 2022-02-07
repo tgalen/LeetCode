@@ -43,3 +43,9 @@ var isValid = function (s) {
     }
     return true;
 };
+
+("[()]");
+("[{[{}]}]");
+("([()])");
+
+console.log("[20]valid-parenthesis");
