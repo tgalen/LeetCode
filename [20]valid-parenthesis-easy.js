@@ -35,13 +35,15 @@ var isValid = function (s) {
     };
 
     const stack = [];
-    for (let i of s) {
-        if (map[i]) {
+    for (let i = 0; i < s.length; i++) {
+        if (map[s[i]]) {
             // i is an opening bracket
-            stack.push(map[i]);
-        } else if (stack.length > 0 && stack[stack.length - 1] === i) {
+            stack.push(map[s[i]]);
+            console.log(stack);
+        } else if (stack.length > 0 && stack[stack.length - 1] === s[i]) {
             // i is a closing bracket and the top of the stack matches
             stack.pop();
+            console.log(stack);
         } else {
             // i is closing bracket and the top of the stack does not match
             return false;
@@ -55,4 +57,11 @@ var isValid = function (s) {
 ("([()])");
 
 console.log("[20]valid-parenthesis");
-console.log(isValid("()"));
+console.log(isValid("[[[[[]]]]]()"));
+const map = {
+    "(": ")",
+    "{": "}",
+    "[": "]"
+};
+
+console.log(map["("]);
