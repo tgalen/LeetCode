@@ -37,15 +37,15 @@ var isValid = function (s) {
     const stack = [];
     for (let i = 0; i < s.length; i++) {
         if (map[s[i]]) {
-            // i is an opening bracket
+            // s[i] is an opening bracket
             stack.push(map[s[i]]);
             console.log(stack);
         } else if (stack.length > 0 && stack[stack.length - 1] === s[i]) {
-            // i is a closing bracket and the top of the stack matches
+            // s[i] is a closing bracket and the top of the stack matches
             stack.pop();
             console.log(stack);
         } else {
-            // i is closing bracket and the top of the stack does not match
+            // s[i] is closing bracket and the top of the stack does not match
             return false;
         }
     }
